@@ -11,8 +11,13 @@
 |
 */
 
-Route::get('/','HomeController@index');
+//Route::get('/','HomeController@index');
 
-Route::get('/Login', function () {
-    return view('login');
+Route::get('/greeting/{name?}', function ($name=null) {
+    if ($name){
+        echo "hello " .$name;
+    }
+    else {
+        echo "hello world";
+    }
 });
