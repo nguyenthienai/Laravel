@@ -7,15 +7,19 @@ Route::prefix('customer')->group(function () {
     });
 
     Route::get('create', function () {
-        return view('create');
+        $display_result = false;
+        return view('modules.customer.create',compact(['display_result']));
     });
 
-    Route::post('store', function () {
-        // Xử lý lưu dữ liệu tạo khách hàng thong qua phương thức POST từ form
+    Route::post('store', function (illuminate\http\Request $request) {
+        $status="saved ok";
+        $display_result = true;
+        return view('modules.customer.create',compact(['status','display_result']));
     });
 
     Route::get('{id}/show', function () {
         // Hiển thị thông tin chi tiết khách hàng có mã định danh id
+
     });
 
     Route::get('{id}/edit', function () {
