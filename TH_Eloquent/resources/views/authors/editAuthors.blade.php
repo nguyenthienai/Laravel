@@ -15,15 +15,15 @@
 <div class="container">
     <h2>Edit Authors</h2>
     <div class="col-12">
-        <form action="{{route('author.store',$authors->id)}}" method="post">
+        <form action="{{route('author.store',$author->id)}}" method="post">
             @csrf
             @method('PATCH')
             <label style="width: 150px">Tên Tác Giả:</label>
-            <input type="text" name="name" value="{{$authors->name}}"><br><br>
+            <input type="text" name="name" value="{{$author->name}}"><br><br>
             <label style="width: 150px">Email:</label>
-            <input type="text" name="email" value="{{$authors->email}}"><br><br>
+            <input type="text" name="email" value="{{$author->email}}"><br><br>
             <label style="width: 150px">Quốc Tịch</label>
-            <input type="text" name="country" value="{{$authors->country}}"><br><br>
+            <input type="text" name="country" value="{{$author->country}}"><br><br>
 
             <button type="submit" name="btn" value="update">Update</button>
             <button type="submit" name="btn" value="back">Back</button>

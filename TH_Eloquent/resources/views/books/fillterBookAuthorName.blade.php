@@ -21,26 +21,6 @@
              @if (Session::has('message'))
     {{Session::get('message')}}
     @endif
-                <div class="col-12 row">
-                <div class="col-6">
-                    <label>Lọc: </label>
-                    <select name="" id="selectAuthor">
-                        <option>--Chọn tên tác giả--</option>
-                        @foreach ($book as $books)
-                        <option value="{{$books->author_id}}">{{$books->author->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-6 ">
-                     <div class="float-right">
-                        <form action="{{route('book.findName')}}" method="post">
-                        @csrf
-                        <input type="text" name="findNameBook" placeholder="Tên sách">
-                        <button>Tìm</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
 
             <table class="table table-striped">
 
@@ -86,20 +66,11 @@
               
                 </tbody>
             </table>
-            {{ $book->links() }}
+        <a href="{{route('book.list')}}">Back</a>
         </div>
 
     </div>
 </div>
-<script>
-    document.getElementById("selectAuthor").onchange = function () {
-        ChooseAuthor()
-    };
 
-    function ChooseAuthor() {
-        var author = document.getElementById("selectAuthor");
-        window.location.href = author.value;
-    }
-</script>
 </body>
 </html>

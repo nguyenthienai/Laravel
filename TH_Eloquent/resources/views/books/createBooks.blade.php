@@ -35,6 +35,9 @@
             <button type="submit" name="btn" value="create">Create</button>
             <button type="submit"><a href="/books/books">Back</a></button>
         </form>
+        @if(Session::has('message'))
+            {{Session::get('message')}}
+            @endif
     </div>
 </div>
 </body>

@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use function foo\func;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
-//use App\Http\Controllers\Controller;
 use App\Book;
 use App\Author;
+
 class BookController extends Controller
 {
     public function listBooks()
     {
 
-        $books = Book::all();
-        return view('books.listBooks', compact('books'));
+       // $books = Book::all();
+        $book = Book::paginate(5);
+        // dd($books);
+        return view('books.listBooks', compact('book'));
     }
 
     public function createBooks()
@@ -27,25 +29,40 @@ class BookController extends Controller
     {
         $attribute = request()->all();
         Book::create($attribute);
+        Session::flash('message','Create new book successful.');
         return redirect('books/createBook');
     }
 
-    public function deleteBooks(Book $books)
+    public function deleteBooks(Book $book)
     {
-        $books->delete();
+        $book->delete();
         return redirect('/books/books');
     }
 
-    public function editBooks(Book $books, Author $authors)
+    public function editBooks(Book $book)
     {
         $authors = Author::all();
-        return view('/books.editBooks', compact('books','authors'));
+        return view('/books.editBooks', compact('book','authors'));
     }
 
-    public function storeBooks(Book $books)
+    public function storeBooks(Book $book)
     {
         $attribute = request()->all();
-        $books->update($attribute);
+        $book->update($attribute);
+        Session::flash('message','Edit book successful.');
         return redirect('/books/books');
+    }
+
+    public function fillterBookAuthorName($authorid)
+    {
+        $book = Book::where('author_id',$authorid)->get();
+        return view('books.fillterBookAuthorName',compact('book'));
+    }
+
+    public function findBookName()
+    {   
+        $findNameBook = request('findNameBook');
+        $book = Book::where('name','like','%'. $findNameBook .'%')->get();
+        return view('books.findBookName', compact('book','findNameBook'));
     }
 }

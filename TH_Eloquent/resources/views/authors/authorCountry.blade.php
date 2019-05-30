@@ -17,28 +17,7 @@
 <div class="container">
     <div class="col-12">
         <div class="row">
-            <h1>Danh Sách Authors</h1><br><br>
-            <div class="col-12 row">
-                <div class="col-6">
-                    <label>Lọc: </label>
-                    <select name="" id="selectCountry">
-                        <option>--Chọn quốc tịch--</option>
-                        @foreach ($author as $authors)
-                        <option value="{{$authors->country}}">{{$authors->country}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-6 ">
-                     <div class="float-right">
-                        <form action="{{route('author.findName')}}" method="post">
-                        @csrf
-                        <input type="text" name="findNameAuthor" placeholder="Tên tác giả">
-                        <button>Tìm</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-           
+            <h1>Danh Sách Authors {{ $country }}</h1><br><br>        
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -72,19 +51,9 @@
                 @endif
                 </tbody>
             </table>
+            <a href="{{route('author.list')}}">Back</a>
         </div>
-    </div>
-    <div style="float:right">{{$author->links()}}</div>
+    </div> 
 </div>
-<script>
-    document.getElementById("selectCountry").onchange = function () {
-        ChooseCountry()
-    };
-
-    function ChooseCountry() {
-        var author = document.getElementById("selectCountry");
-        window.location.href = author.value;
-    }
-</script>
 </body>
 </html>

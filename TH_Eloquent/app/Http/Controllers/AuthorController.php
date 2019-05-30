@@ -10,8 +10,8 @@ class AuthorController extends Controller
 {
     public function listAuthors()
     {
-        $authors = Author::all();
-        return view('authors.listAuthors',compact('authors'));
+        $author = Author::paginate(5);
+        return view('authors.listAuthors',compact('author'));
     }
 
     public function createAuthors()
@@ -26,21 +26,34 @@ class AuthorController extends Controller
         return redirect('authors/create');
     }
 
-    public function editAuthors(Author $authors)
+    public function editAuthors(Author $author)
     {
-        return view('authors.editAuthors', compact('authors'));
+        return view('authors.editAuthors', compact('author'));
     }
 
-    public function storeAuthors(Author $authors)
+    public function storeAuthors(Author $author)
     {
         $attribute = request()->all();
-        $authors->update($attribute);
+        $author->update($attribute);
         return redirect('/authors/authors');
     }
 
-    public function deleteAuthors(Author $authors)
+    public function deleteAuthors(Author $author)
     {
-        $authors->delete();
+        $author->delete();
         return redirect('/authors/authors');
+    }
+
+     public function fillterAuthorCountry($country)
+    {
+        $author = Author::where('country',$country)->get();
+        return view('authors.authorCountry',compact('author','country'));
+    }
+
+    public function findAuthorName()
+    {   
+        $findAuthorName = request('findNameAuthor');
+        $author = Author::where('name',$findAuthorName)->get();
+        return view('authors.findAuthorName', compact('author','findAuthorName'));
     }
 }

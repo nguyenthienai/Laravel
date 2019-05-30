@@ -14,28 +14,28 @@
 <body>
 <div class="container">
     <h2>Edit Book</h2>
+
     <div class="col-12">
-        <form action="{{route('book.store',$books->id)}}" method="post">
+        <form action="{{route('book.store',$book->id)}}" method="post">
             @method('patch')
             @csrf
             <label style="width: 150px">Tác giả:</label>
             
             <select name="author_id">
-                <option value="{{$books->author->id}}">{{$books->author->name}}</option>
                 @foreach ($authors as $author)
-                <option value="{{$author->id}}" >{{$author->name}}</option>
+                <option value="{{$author->id}}" {{$author->id === $book->author->id ? "selected":"" }}>{{$author->name}}</option>
                  @endforeach
             </select><br><br>
            
 
             <label style="width: 150px">Tên Sách:</label>
-            <input type="text" name="name" value="{{$books->name}}"><br><br>
+            <input type="text" name="name" value="{{$book->name}}"><br><br>
             <label style="width: 150px">Mô tả:</label>
-            <textarea type="text" name="description" rows="5" cols="50">{{$books->description}}</textarea><br><br>
+            <textarea type="text" name="description" rows="5" cols="50">{{$book->description}}</textarea><br><br>
             <label style="width: 150px">Số lượng:</label>
-            <input type="number" name="quantity" value="{{$books->quantity}}"><br><br>
+            <input type="number" name="quantity" value="{{$book->quantity}}"><br><br>
             <label style="width: 150px">Giá:</label>
-            <input type="text" name="price" value="{{$books->price}}"><br><br>
+            <input type="text" name="price" value="{{$book->price}}"><br><br>
 
             <button type="submit" name="btn" value="create">Update</button>
             <button type="submit"><a href="/books/books">Back</a></button>
