@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Book;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('layouts.header');
+    	$book = Book::all();
+        return view('index', compact('book'));
     }
 }
