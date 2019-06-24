@@ -11,15 +11,15 @@ class FrontendController extends Controller
 {
 	public function index()
 	{
-		$hotproduct = Product::where('hot',1)->orderby('created_at','desc')->take(6)->get();
-		$newproduct = Product::where('status',1)->orderby('created_at','desc')->take(6)->get();
+		$hotproduct = Product::where('hot',1)->orderby('created_at','desc')->take(8)->get();
+		$newproduct = Product::where('status',1)->orderby('created_at','desc')->take(8)->get();
 		return view('frontend.index', compact('hotproduct','newproduct'));
 	}
 
-	public function productcategory($id)
+	public function productcategory(Category $cat)
 	{
-		$productcategory = Product::where(['status'=>1,'category_id'=>$id])->orderBy('created_at')->paginate(6);
-		return view('frontend.productcategory', compact('productcategory'));
+		$productcategory = Product::where(['status'=>1,'category_id'=>$cat->id])->orderBy('created_at')->paginate(6);
+		return view('frontend.productcategory', compact('productcategory','cat'));
 	}
 
 	public function productdetail(Product $product)
@@ -42,12 +42,18 @@ class FrontendController extends Controller
 	public function searchProduct()
 	{   
 		$search = request('search');
-		$products = Product::where('name','like','%'. $search .'%')->paginate(9);
+		$products = Product::where('name','like','%'. $search .'%')->paginate(15);
 		if(!empty($search)){
 			return view('frontend.searchresult', compact('products','search'));
 		}
 		else {
 			return back();
 		}
+	}
+
+	public function allProduct()
+	{
+		$products = Product::where('status',1)->orderBy('created_at')->paginate(15);
+		return view ('frontend.allproduct', compact('products'));
 	}
 }

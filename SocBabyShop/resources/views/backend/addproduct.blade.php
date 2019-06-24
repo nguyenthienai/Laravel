@@ -1,17 +1,16 @@
 @extends('layouts.backend.master')
 @section('title', 'Quản Trị | Thêm mới sản phẩm')
 @section('content')	
-
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 	<div class="row">
 		<div class="col-lg-12">
 			<h1 class="page-header">Sản phẩm</h1>
+			<div>@includeIf('success.success')</div>
+			<div>@includeIf('errors.error')</div>
 		</div>
 	</div><!--/.row-->
-
 	<div class="row">
 		<div class="col-xs-12 col-md-12 col-lg-12">
-
 			<div class="panel panel-primary">
 				<div class="panel-heading">Thêm sản phẩm</div>
 				<div class="panel-body">
@@ -29,7 +28,7 @@
 								</div>
 								<div class="form-group" >
 									<label>Giá khuyến mãi</label>
-									<input required type="number" name="promotionprice" class="form-control">
+									<input type="number" name="promotionprice" class="form-control" value="0">
 								</div>
 								<div class="form-group" >
 									<label>Ảnh sản phẩm</label>
@@ -59,10 +58,9 @@
 											filebrowserFlashUploadUrl: '../../public/backend/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
 										});
 									</script>
-
 								</div>
 								<div class="form-group" >
-									<label>Loại sản phẩm</label>									
+									<label>Loại sản phẩm</label>	
 									<select required name="category_id" class="form-control">
 										@foreach ($categories as $category)
 											<option value="{{$category->id}}">{{$category->name}}</option>
@@ -86,28 +84,7 @@
 	</div><!--/.row-->
 </div>	<!--/.main-->
 <script src="js/jquery-1.11.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/chart.min.js"></script>
-<script src="js/chart-data.js"></script>
-<script src="js/easypiechart.js"></script>
-<script src="js/easypiechart-data.js"></script>
-<script src="js/bootstrap-datepicker.js"></script>
 <script>
-	$('#calendar').datepicker({
-	});
-	!function ($) {
-		$(document).on("click","ul.nav li.parent > a > span.icon", function(){          
-			$(this).find('em:first').toggleClass("glyphicon-minus");      
-		}); 
-		$(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-	}(window.jQuery);
-
-	$(window).on('resize', function () {
-		if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
-	})
-	$(window).on('resize', function () {
-		if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
-	});
 	function changeImg(input){
 		    //Nếu như tồn thuộc tính file, đồng nghĩa người dùng đã chọn file mới
 		    if(input.files && input.files[0]){
@@ -125,5 +102,5 @@
 				$('#img').click();
 			});
 		});
-	</script>	
+</script>	
 @endsection

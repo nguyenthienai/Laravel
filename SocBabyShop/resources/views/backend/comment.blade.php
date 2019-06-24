@@ -8,16 +8,13 @@
 			<h1 class="page-header">Bình Luận Của Khách Hàng</h1>
 		</div>
 	</div><!--/.row-->
-
 	<div class="row">
 		<div class="col-xs-12 col-md-12 col-lg-12">
-
 			<div class="panel panel-primary">
 				<div class="panel-heading">Danh sách bình luận</div>
 				<div class="panel-body">
 					<div class="bootstrap-table">
 						<div class="table-responsive">
-							<a href="{{route('customer.create')}}" class="btn btn-primary my-3">Thêm bình luận</a>
 							<div class="row text-center my-3">{{$comments -> links()}}</div>
 							<table class="table table-bordered my-3">				
 								<thead>
@@ -40,7 +37,6 @@
 										<td>{{$comment->content}}</td>
 										<td>{{$comment->product->name}}</td>
 										<td>
-											<a href="{{route('comment.edit',$comment->id)}}" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
 											<a href="{{route('comment.delete', $comment->id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này ?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Xóa</a>
 										</td>
 									</tr>

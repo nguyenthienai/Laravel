@@ -8,7 +8,6 @@
 			<h1 class="page-header">Sản phẩm</h1>
 		</div>
 	</div><!--/.row-->
-
 	<div class="row">
 		<div class="col-xs-12 col-md-12 col-lg-12">
 
@@ -19,6 +18,8 @@
 						<div class="table-responsive">
 							<a href="{{route('product.create')}}" class="btn btn-primary">Thêm sản phẩm</a>
 							<div class="row text-center">{{$products -> links()}}</div>
+							<div>@includeIf('errors.error')</div>
+							<div>@includeIf('success.success')</div>
 							<table class="table table-bordered my-3">				
 								<thead>
 									<tr class="bg-primary">

@@ -12,6 +12,10 @@ body {
 	color: #5f6468;
 }
 
+.catzoom:hover{
+font-size: 150%;
+}
+
 p {
 	color: #777;
 }

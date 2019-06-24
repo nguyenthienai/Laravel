@@ -14,20 +14,21 @@
 				<div class="panel-heading">
 					Thêm danh mục
 				</div>
+				<div>@includeIf('errors.error')</div>
 				<div class="panel-body">
 					<form action="{{route('category.create')}}" method="post">
 						@csrf
 					<div class="form-group">
 						<label>Tên danh mục:</label>
-						<input type="text" name="name" class="form-control" placeholder="Tên danh mục...">
+						<input required type="text" name="name" class="form-control" placeholder="Tên danh mục...">
 					</div>
 					<div class="form-group">
 						<label>Slug:</label>
-						<input type="text" name="slug" class="form-control" placeholder="Slug...">
+						<input required type="text" name="slug" class="form-control" placeholder="Slug...">
 					</div>
 					<div class="form-group">
 						<label>Parent ID:</label>
-						<input type="number" name="parentid" class="form-control" placeholder="Parent ID...">
+						<input required type="number" name="parentid" class="form-control" placeholder="Parent ID...">
 					</div>
 					<div class="form-group">
 						<button type="submit" name="submit" class="form-control btn btn-danger">Thêm</button>

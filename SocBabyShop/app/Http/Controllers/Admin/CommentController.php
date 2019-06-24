@@ -14,23 +14,9 @@ class CommentController extends Controller
     	return view ('backend.comment', compact('comments'));
     }
 
-     public function createComment()
+     public function deleteComment(Comment $comment)
     {
-    	
-    }
-
-     public function docreateComment()
-    {
-    	
-    }
-
-     public function editComment()
-    {
-    	
-    }
-
-     public function delelteComment()
-    {
-    	
+    	$comment->delete();
+        return back();
     }
 }

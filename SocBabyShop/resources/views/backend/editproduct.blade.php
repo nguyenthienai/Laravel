@@ -16,8 +16,10 @@
 
 			<div class="panel panel-primary">
 				<div class="panel-heading">Sửa sản phẩm</div>
+				<div>@includeIf('errors.error')</div>
 				<div class="panel-body">
 					<form action="{{route('product.store',$product->id)}}" method="post" enctype="multipart/form-data">
+						@method('patch')
 						@csrf
 						<div class="row" style="margin-bottom:40px">
 							<div class="col-xs-8">
@@ -31,7 +33,7 @@
 								</div>
 								<div class="form-group" >
 									<label>Giá khuyến mãi</label>
-									<input required type="number" name="promotionprice" class="form-control" value="{{$product->promotionprice}}">
+									<input type="number" name="promotionprice" class="form-control" value="{{$product->promotionprice}}">
 								</div>
 								<div class="form-group" >
 									<label>Ảnh sản phẩm</label>
@@ -63,7 +65,7 @@
 									</script>
 								</div>
 								<div class="form-group" >
-									<label>Loại sản phẩm</label>									
+									<label>Loại sản phẩm</label>		
 									<select required name="category_id" class="form-control">
 										@foreach ($categories as $category)
 											<option value="{{$category->id}}" {{$product->category->id === $category->id ? "selected" : ""}}>{{$category->name}}</option>
@@ -76,7 +78,7 @@
 									Không: <input type="radio" name="hot" value="0" {{$product->hot === 0 ? "checked" : ""}}>
 								</div>
 								<input type="submit" name="edit" value="Sửa" class="btn btn-primary">
-								<a href="{{route('product.list')}}" class="btn btn-danger">Hủy bỏ</a>
+								<a href="{{route('product.list')}}" class="btn btn-danger">Trở Lại</a>
 							</div>
 						</div>
 					</form>
@@ -87,27 +89,7 @@
 	</div><!--/.row-->
 </div>	<!--/.main-->
 <script src="js/bootstrap.min.js"></script>
-<script src="js/chart.min.js"></script>
-<script src="js/chart-data.js"></script>
-<script src="js/easypiechart.js"></script>
-<script src="js/easypiechart-data.js"></script>
-<script src="js/bootstrap-datepicker.js"></script>
 <script>
-	$('#calendar').datepicker({
-	});
-	!function ($) {
-		$(document).on("click","ul.nav li.parent > a > span.icon", function(){          
-			$(this).find('em:first').toggleClass("glyphicon-minus");      
-		}); 
-		$(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-	}(window.jQuery);
-
-	$(window).on('resize', function () {
-		if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
-	})
-	$(window).on('resize', function () {
-		if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
-	});
 	function changeImg(input){
 		    //Nếu như tồn thuộc tính file, đồng nghĩa người dùng đã chọn file mới
 		    if(input.files && input.files[0]){

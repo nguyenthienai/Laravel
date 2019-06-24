@@ -44,25 +44,7 @@ body{
 		width: 100%;
 	}
 }
-#cart{			
-	color: #fff;
-	line-height: 98px;
-	font-weight: bold;
-	position: relative;
-}
-#cart img{
-	position: absolute;
-	top: 0;
-	left: 0;
-}
-#cart a:first-child{	
-	color: #fff;
-}	
-#cart a:last-child{
-	margin-left: 60px;
-	color: #ff6600;
-	position: absolute;	
-}	
+	
 @media (min-width: 960px) and (max-width: 1210px){
 	#cart{			
 	color: #fff;
@@ -235,18 +217,6 @@ padding-left: 12px;
 	#slider{
 		display: none;
 	}
-	#cart{
-		margin-left: 350px;		
-		color: #fff;
-		line-height: 98px;
-		font-weight: bold;
-	}
-	#cart a:first-child{
-		color: #fff;
-	}	
-	#cart a:last-child{		
-		color: #ff6600;
-	}	
 	
 	#menu{
 		margin-bottom: 20px;
@@ -263,11 +233,15 @@ padding-left: 12px;
 	#footer-logo{
 		text-align: left;
 	}
+		#list-cart{
+		margin:0px 10px;
+	}
+	#xac-nhan{
+		margin:0px 10px;
+	}
 }
 @media (max-width: 768px) {
-	#cart{
-		display: none;
-	}
+
 	#header{
 		text-align: center;
 	}

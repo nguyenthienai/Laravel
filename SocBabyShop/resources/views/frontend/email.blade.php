@@ -1,4 +1,4 @@
-@extends('layouts.layoutsite')
+@extends('layouts.frontend.master')
 @section('title','Xác nhận đơn hàng')
 @section('content')
 <div id="wrap-inner">

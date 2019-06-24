@@ -14,23 +14,32 @@ class CustomerController extends Controller
     	return view ('backend.customer', compact('customers'));
     }
 
-     public function createCustomer()
+    public function createCustomer()
     {
-    	
+    	return view ('backend.addcustomer');
     }
 
-     public function docreateCustomer()
+    public function docreateCustomer()
     {
-    	
+    	$attribute = request()->all();
+        Customer::create($attribute);
+        return back();
     }
 
-     public function editCustomer()
+    public function editCustomer(Customer $customer)
     {
-    	
+    	return view ('backend.editcustomer',compact('customer'));
     }
 
-     public function delelteCustomer()
+    public function storeCustomer(Customer $customer)
     {
-    	
+        $attribute = request()->all();
+        $customer->update($attribute);
+        return redirect(route('customer.list'));
+    }
+    public function deleteCustomer(Customer $customer)
+    {
+    	$customer->delete();
+        return back();
     }
 }
